@@ -1,6 +1,8 @@
-package nl.mkoopman.micro.services.rest.camel.model;
+package nl.mkoopman.micro.services.rest.camel.model.impl;
 
-public class User {
+import nl.mkoopman.micro.services.rest.camel.model.Model;
+
+public class User implements Model {
 	private String email;
 	private String password;
 

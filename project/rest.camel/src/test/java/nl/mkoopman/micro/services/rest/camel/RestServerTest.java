@@ -6,5 +6,6 @@ public class RestServerTest {
 
 	@Test
 	public void testRestServer() throws Exception {
+		final RestServer restServer;
 	}
 }

@@ -2,7 +2,7 @@ package nl.mkoopman.micro.services.rest.camel;
 
 import nl.mkoopman.micro.services.rest.camel.processor.PdfProcessor;
 import nl.mkoopman.micro.services.rest.camel.processor.UserProcessor;
-import nl.mkoopman.micro.services.rest.camel.repository.UserRepositoryImpl;
+import nl.mkoopman.micro.services.rest.camel.repository.impl.UserRepository;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.main.Main;
@@ -16,7 +16,7 @@ public class RestServer {
 	public RestServer() {
 		main = new Main();
 		main.enableHangupSupport();
-		main.bind("userRepository", new UserRepositoryImpl());
+		main.bind("userRepository", new UserRepository());
 		BasicConfigurator.configure();
 	}
 
