@@ -8,6 +8,8 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.main.Main;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 public class RestServer {
 
@@ -18,6 +20,7 @@ public class RestServer {
 		main.enableHangupSupport();
 		main.bind("userRepository", new UserRepository());
 		BasicConfigurator.configure();
+		Logger.getRootLogger().setLevel(Level.INFO);
 	}
 
 	public void boot() throws Exception {
