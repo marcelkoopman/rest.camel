@@ -1,5 +1,7 @@
 package nl.mkoopman.micro.services.rest.camel;
 
+import nl.mkoopman.micro.services.rest.camel.model.impl.DatamodelLoader;
+import nl.mkoopman.micro.services.rest.camel.model.impl.DefaultModel;
 import nl.mkoopman.micro.services.rest.camel.processor.PdfProcessor;
 import nl.mkoopman.micro.services.rest.camel.processor.UserProcessor;
 import nl.mkoopman.micro.services.rest.camel.repository.impl.UserRepository;
@@ -31,6 +33,9 @@ public class RestServer {
 	private static class MyRouteBuilder extends RouteBuilder {
 		@Override
 		public void configure() throws Exception {
+
+			from("file://datamodel?move=loaded").unmarshal().json(JsonLibrary.Gson, DefaultModel.class).process(new DatamodelLoader());
+
 			restConfiguration().component("netty4-http").port(9091);
 
 			rest("/api").get("user").to("direct:user");
